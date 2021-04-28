@@ -68,7 +68,7 @@
 
                     <!-- Pagination  -->
                     <div class="d-flex justify-content-center">
-                        {!! $${{modelCamelPlural}}->links() !!}
+                        {!! ${{modelCamelPlural}}->links() !!}
                     </div>
 
                 </div>

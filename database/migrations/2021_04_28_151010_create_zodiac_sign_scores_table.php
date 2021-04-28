@@ -15,7 +15,11 @@ class CreateZodiacSignScoresTable extends Migration
     {
         Schema::create('zodiac_sign_scores', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->unsignedBigInteger('zodiac_sign_id');
+            $table->integer('score');
+            $table->date('score_date');
+            $table->string('score_year');
+            $table->string('score_month');
             $table->timestamps();
         });
     }

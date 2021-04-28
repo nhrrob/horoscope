@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/events', [App\Http\Controllers\HomeController::class, 'events'])->name('home.events');
 
 Auth::routes();
 
@@ -24,6 +23,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth'], function () {
   Route::resource('zodiac-signs', '\App\Http\Controllers\ZodiacSignController'); 
   Route::resource('horoscopes', '\App\Http\Controllers\HoroscopeController'); 
   Route::resource('zodiac-sign-scores', '\App\Http\Controllers\ZodiacSignScoreController'); 
+  Route::resource('score-comments', '\App\Http\Controllers\ScoreCommentController'); 
 
 
 });

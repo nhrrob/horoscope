@@ -15,15 +15,24 @@
                     @endif
 
                     @if(auth()->user()->role == 'admin')
-                    <p><a class="btn btn-success" href='{{ route("zodiac-sign-scores.create") }}'><i class="fa fa-plus"></i> Create Zodiac Sign Score</a></p>
+                    <!-- <p><a class="btn btn-success" href='{{ route("zodiac-sign-scores.create") }}'><i class="fa fa-plus"></i> Create Zodiac Sign Score</a></p> -->
                     @endif
 
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>
-                                    Title
+                                    Zodiac Sign
                                 </th>
+                                
+                                <th>
+                                    Score
+                                </th>
+                                
+                                <th>
+                                    Score Date
+                                </th>
+                                                                
                                 <th>
                                     Created
                                 </th>
@@ -34,7 +43,15 @@
                             @forelse($zodiacSignScores as $zodiacSignScore)
                             <tr>
                                 <td>
-                                    {{ $zodiacSignScore->title ?? 'N/A' }}
+                                    {{ optional($zodiacSignScore->zodiacSign)->title ?? 'N/A' }}
+                                </td>
+                                
+                                <td>
+                                    {{ $zodiacSignScore->score ?? 'N/A' }}
+                                </td>
+                                
+                                <td>
+                                    {{ $zodiacSignScore->score_date ?? 'N/A' }}
                                 </td>
 
                                 <td>
@@ -43,7 +60,7 @@
 
                                 <td>
                                     @if(auth()->user()->role == 'admin')
-                                    <a class="btn btn-success d-block mb-2" href='{{ route("zodiac-sign-scores.edit", $zodiacSignScore->id) }}'><i class="fa fa-pencil"></i> Edit</a>
+                                    <!-- <a class="btn btn-success d-block mb-2" href='{{ route("zodiac-sign-scores.edit", $zodiacSignScore->id) }}'><i class="fa fa-pencil"></i> Edit</a> -->
                                     <!-- <form method="POST" action="{{ route('zodiac-sign-scores.destroy', $zodiacSignScore->id) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
