@@ -14,17 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['middleware' => 'auth'], function () { 
-  Route::resource('horoscopes', '\App\Http\Controllers\HoroscopeController'); 
-});
-
-Route::group(['middleware' => 'auth'], function () { 
+Route::group(['prefix' => 'admin/', 'middleware' => 'auth'], function () { 
+  Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
   Route::resource('zodiac-signs', '\App\Http\Controllers\ZodiacSignController'); 
+  Route::resource('horoscopes', '\App\Http\Controllers\HoroscopeController'); 
+  Route::resource('zodiac-sign-scores', '\App\Http\Controllers\ZodiacSignScoreController'); 
+
+
 });

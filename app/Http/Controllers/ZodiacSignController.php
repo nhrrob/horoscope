@@ -13,15 +13,15 @@ class ZodiacSignController extends Controller
 
     public function index()
     {
-        $data['zodiacSigns'] = ZodiacSign::latest()->get();
-        return view('zodiac_sign.index', $data);
+        $data['zodiacSigns'] = ZodiacSign::latest()->paginate(10);
+        return view('admin.zodiac_sign.index', $data);
     }
 
     public function create()
     {
         $this->adminOnly();
 
-        return view('zodiac_sign.create');
+        return view('admin.zodiac_sign.create');
     }
 
     public function store(ZodiacSignRequest $request)
@@ -58,7 +58,7 @@ class ZodiacSignController extends Controller
         $this->adminOnly();
 
         $data['zodiacSign'] = $zodiacSign;
-        return view('zodiac_sign.edit', $data);
+        return view('admin.zodiac_sign.edit', $data);
     }
 
     public function update(ZodiacSignRequest $request, ZodiacSign $zodiacSign)

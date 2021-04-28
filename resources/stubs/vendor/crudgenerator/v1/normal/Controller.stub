@@ -10,7 +10,7 @@ class {{modelPascal}}Controller extends Controller
 {
     public function index()
     {
-        $data['{{modelCamelPlural}}'] = {{modelPascal}}::latest()->get();
+        $data['{{modelCamelPlural}}'] = {{modelPascal}}::latest()->paginate(10);
         return view('{{modelSnake}}.index', $data);
     }
 

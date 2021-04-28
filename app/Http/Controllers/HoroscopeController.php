@@ -14,15 +14,15 @@ class HoroscopeController extends Controller
 
     public function index()
     {
-        $data['horoscopes'] = Horoscope::latest()->get();
-        return view('horoscope.index', $data);
+        $data['horoscopes'] = Horoscope::latest()->paginate(10);
+        return view('admin.horoscope.index', $data);
     }
 
     public function create()
     {
         $this->adminOnly();
 
-        return view('horoscope.create');
+        return view('admin.horoscope.create');
     }
 
     public function store(HoroscopeRequest $request)
@@ -59,7 +59,7 @@ class HoroscopeController extends Controller
         $this->adminOnly();
         
         $data['horoscope'] = $horoscope;
-        return view('horoscope.edit', $data);
+        return view('admin.horoscope.edit', $data);
     }
 
     public function update(HoroscopeRequest $request, Horoscope $horoscope)

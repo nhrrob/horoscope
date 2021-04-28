@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('{{modelTitle}}') }}</div>
+                <div class="card-header">{{ __('Zodiac Sign') }}</div>
 
                 <div class="card-body">
                     @if (session('message'))
@@ -15,7 +15,7 @@
                     @endif
 
                     @if(auth()->user()->role == 'admin')
-                    <p><a class="btn btn-success" href='{{ route("{{modelKebabPlural}}.create") }}'><i class="fa fa-plus"></i> Create {{modelTitle}}</a></p>
+                    <p><a class="btn btn-success" href='{{ route("zodiac-signs.create") }}'><i class="fa fa-plus"></i> Create Zodiac Sign</a></p>
                     @endif
 
                     <table class="table table-bordered">
@@ -31,20 +31,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse(${{modelCamelPlural}} as ${{modelCamel}})
+                            @forelse($zodiacSigns as $zodiacSign)
                             <tr>
                                 <td>
-                                    {{ ${{modelCamel}}->title ?? 'N/A' }}
+                                    {{ $zodiacSign->title ?? 'N/A' }}
                                 </td>
 
                                 <td>
-                                    {{ optional(${{modelCamel}}->created_at)->diffForHumans() }}
+                                    {{ optional($zodiacSign->created_at)->diffForHumans() }}
                                 </td>
 
                                 <td>
                                     @if(auth()->user()->role == 'admin')
-                                    <a class="btn btn-success d-block mb-2" href='{{ route("{{modelKebabPlural}}.edit", ${{modelCamel}}->id) }}'><i class="fa fa-pencil"></i> Edit</a>
-                                    <form method="POST" action="{{ route('{{modelKebabPlural}}.destroy', ${{modelCamel}}->id) }}">
+                                    <a class="btn btn-success d-block mb-2" href='{{ route("zodiac-signs.edit", $zodiacSign->id) }}'><i class="fa fa-pencil"></i> Edit</a>
+                                    @endif
+                                    <!-- <form method="POST" action="{{ route('zodiac-signs.destroy', $zodiacSign->id) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
@@ -52,9 +53,7 @@
                                             <i class="fa fa-times"></i>
                                             <input type="submit" class="btn btn-danger d-block" value="Delete">
                                         </div>
-                                    </form>
-                                    @endif
-
+                                    </form> -->
 
                                 </td>
                             </tr>
@@ -65,10 +64,10 @@
                             @endforelse
                         </tbody>
                     </table>
-
+                    
                     <!-- Pagination  -->
                     <div class="d-flex justify-content-center">
-                        {!! $${{modelCamelPlural}}->links() !!}
+                        {!! $zodiacSigns->links() !!}
                     </div>
 
                 </div>

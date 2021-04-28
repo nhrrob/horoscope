@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Zodiac Sign') }}</div>
+                <div class="card-header">{{ __('Horoscope') }}</div>
 
                 <div class="card-body">
                     @if (session('message'))
@@ -15,7 +15,7 @@
                     @endif
 
                     @if(auth()->user()->role == 'admin')
-                    <p><a class="btn btn-success" href='{{ route("zodiac-signs.create") }}'><i class="fa fa-plus"></i> Create Zodiac Sign</a></p>
+                    <p><a class="btn btn-success" href='{{ route("horoscopes.create") }}'><i class="fa fa-plus"></i> Create Horoscope</a></p>
                     @endif 
 
                     <table class="table table-bordered">
@@ -31,30 +31,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($zodiacSigns as $zodiacSign)
+                            @forelse($horoscopes as $horoscope)
                             <tr>
                                 <td>
-                                    {{ $zodiacSign->title ?? 'N/A' }}
+                                    {{ $horoscope->title ?? 'N/A' }}
                                 </td>
 
                                 <td>
-                                    {{ optional($zodiacSign->created_at)->diffForHumans() }}
+                                    {{ optional($horoscope->created_at)->diffForHumans() }}
                                 </td>
 
                                 <td>
                                     @if(auth()->user()->role == 'admin')
-                                    <a class="btn btn-success d-block mb-2" href='{{ route("zodiac-signs.edit", $zodiacSign->id) }}'><i class="fa fa-pencil"></i> Edit</a>
-                                    @endif 
-                                    <!-- <form method="POST" action="{{ route('zodiac-signs.destroy', $zodiacSign->id) }}">
+                                    <a class="btn btn-success d-block mb-2" href='{{ route("horoscopes.edit", $horoscope->id) }}'><i class="fa fa-pencil"></i> Edit</a>
+
+                                    <form method="POST" action="{{ route('horoscopes.destroy', $horoscope->id) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
                                         <div class="form-group">
                                             <i class="fa fa-times"></i>
-                                            <input type="submit" class="btn btn-danger d-block" value="Delete">
+                                            <input class="btn btn-danger d-block" type="submit" value="Delete">
                                         </div>
-                                    </form> -->
-
+                                    </form>
+                                    @endif 
                                 </td>
                             </tr>
                             @empty
@@ -64,6 +64,12 @@
                             @endforelse
                         </tbody>
                     </table>
+
+                    <!-- Pagination  -->
+                    <div class="d-flex justify-content-center">
+                        {!! $horoscopes->links() !!}
+                    </div>
+
                 </div>
             </div>
         </div>
