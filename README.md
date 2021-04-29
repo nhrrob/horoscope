@@ -3,14 +3,23 @@ Filter by year and Zodiac Sign and get results in calendar view
 
 ### Install
 
-- clone project
-- add .env and database settings
-- install or update composer
+- Clone project
+- install or update composer: <code>composer update</code>
+- Copy .env.example to .env and add database settings (show hidden files if .env.example is not found)
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=horoscope
+DB_USERNAME=root
+DB_PASSWORD=
+```
+- Generate key: <code>php artisan key:generate</code>
 - run migration command: <code>php artisan migrate:fresh --seed</code>
 - run serve command: <code>php artisan serve</code>
 
 ### Loom Video 
-
+https://www.loom.com/share/56a2a25f9ac940f4a62699f36cf064be 
 
 #### Demo Credentials:
 - Admin
